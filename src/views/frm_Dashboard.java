@@ -607,7 +607,7 @@ public class frm_Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_btnsanphamMousePressed
 
     private void btnkhuyenmaiMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnkhuyenmaiMousePressed
-        if (TenCV.equalsIgnoreCase("quản lý")) {
+        if (TenCV.equalsIgnoreCase("quản lí")) {
             setColor(btnkhuyenmai);
             crep3.setOpaque(true);
             resetColor(new JPanel[]{btnbanhang, btnsanpham, btnkhachhang, btnnhanvien, btnthongke, btnhoadon, btndangxuat}, new JPanel[]{crep1, crep2, crep4, crep5, crepp1, crepp2, crepp3});
@@ -629,7 +629,7 @@ public class frm_Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_btnkhachhangMousePressed
 
     private void btnnhanvienMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnnhanvienMousePressed
-        if (TenCV.equalsIgnoreCase("quản lý")) {
+        if (TenCV.equalsIgnoreCase("quản lí")) {
             setColor(btnnhanvien);
             crep5.setOpaque(true);
             resetColor(new JPanel[]{btnbanhang, btnsanpham, btnkhuyenmai, btnkhachhang, btnthongke, btnhoadon, btndangxuat}, new JPanel[]{crep1, crep2, crep3, crep4, crepp1, crepp2, crepp3});
@@ -651,7 +651,7 @@ public class frm_Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_btnhoadonMousePressed
 
     private void btnthongkeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnthongkeMousePressed
-        if (TenCV.equalsIgnoreCase("quản lý")) {
+        if (TenCV.equalsIgnoreCase("quản lí") || TenCV.equalsIgnoreCase("nhân viên") ) {
             setColor(btnthongke);
             crepp1.setOpaque(true);
             resetColor(new JPanel[]{btnbanhang, btnsanpham, btnkhuyenmai, btnkhachhang, btnnhanvien, btnhoadon, btndangxuat}, new JPanel[]{crep1, crep2, crep3, crep4, crep5, crepp2, crepp3});
