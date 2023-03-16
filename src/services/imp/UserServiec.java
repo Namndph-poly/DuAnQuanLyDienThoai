@@ -44,7 +44,7 @@ public class UserServiec implements IUserServiec {
 
         if (list != null) {
             for (User x : list) {
-                if (x.getChucVu().getTen().equalsIgnoreCase("quản lý")) {
+                if (x.getChucVu().getTen().equalsIgnoreCase("quản lí")) {
                     JOptionPane.showMessageDialog(new frm_Login(), "Đăng nhập thành công! (Quản Lý)");
                     String tenNV = x.getHoTen();
                     new frm_Dashboard(tenNV, x.getId(), x.getChucVu().getTen()).setVisible(true);
