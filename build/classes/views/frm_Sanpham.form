@@ -347,15 +347,13 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="138" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="txt_Ten3" alignment="1" min="-2" pref="210" max="-2" attributes="0"/>
-                                      <Component id="jLabel6" alignment="1" min="-2" pref="210" max="-2" attributes="0"/>
                                       <Component id="jLabel8" alignment="1" min="-2" pref="210" max="-2" attributes="0"/>
-                                      <Component id="txt_Ten4" alignment="1" min="-2" pref="210" max="-2" attributes="0"/>
+                                      <Component id="txtMaHang" alignment="1" min="-2" pref="210" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="163" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jLabel5" min="-2" pref="210" max="-2" attributes="0"/>
-                                      <Component id="txt_Ten5" min="-2" pref="210" max="-2" attributes="0"/>
+                                      <Component id="txtTenHang" min="-2" pref="210" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
@@ -364,11 +362,11 @@
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="220" max="-2" attributes="0"/>
-                                  <Component id="btn_them1" min="-2" pref="120" max="-2" attributes="0"/>
+                                  <Component id="btnThemHang" min="-2" pref="120" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                                  <Component id="Btn_capNhat1" min="-2" pref="120" max="-2" attributes="0"/>
+                                  <Component id="btnCapNhatHang" min="-2" pref="120" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                                  <Component id="btn_LamMoi1" min="-2" pref="120" max="-2" attributes="0"/>
+                                  <Component id="btnLamMoiHang" min="-2" pref="120" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace pref="31" max="32767" attributes="0"/>
@@ -380,25 +378,21 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabel6" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                               <Component id="jLabel5" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                              <Component id="jLabel8" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="txt_Ten3" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txt_Ten5" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtTenHang" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtMaHang" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jLabel8" min="-2" pref="20" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                          <Component id="txt_Ten4" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="131" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="btn_them1" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                              <Component id="Btn_capNhat1" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                              <Component id="btn_LamMoi1" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                              <Component id="btnThemHang" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                              <Component id="btnCapNhatHang" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                              <Component id="btnLamMoiHang" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="85" max="32767" attributes="0"/>
+                          <EmptySpace pref="51" max="32767" attributes="0"/>
                           <Component id="jScrollPane4" min="-2" pref="257" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
                       </Group>
@@ -414,17 +408,7 @@
                     <Property name="text" type="java.lang.String" value="T&#xea;n H&#xe3;ng"/>
                   </Properties>
                 </Component>
-                <Component class="swing.MyTextField" name="txt_Ten3">
-                </Component>
-                <Component class="javax.swing.JLabel" name="jLabel6">
-                  <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Segoe UI" size="12" style="1"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="ID H&#xe3;ng"/>
-                  </Properties>
-                </Component>
-                <Component class="swing.MyTextField" name="txt_Ten4">
+                <Component class="swing.MyTextField" name="txtMaHang">
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel8">
                   <Properties>
@@ -434,7 +418,7 @@
                     <Property name="text" type="java.lang.String" value="M&#xe3;  H&#xe3;ng"/>
                   </Properties>
                 </Component>
-                <Component class="swing.MyTextField" name="txt_Ten5">
+                <Component class="swing.MyTextField" name="txtTenHang">
                 </Component>
                 <Container class="javax.swing.JScrollPane" name="jScrollPane4">
                   <AuxValues>
@@ -443,7 +427,7 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTable" name="TB_bang2">
+                    <Component class="javax.swing.JTable" name="tblHang">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                           <Table columnCount="3" rowCount="0">
@@ -480,12 +464,12 @@
                         </Property>
                       </Properties>
                       <Events>
-                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="TB_bang2MouseClicked"/>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblHangMouseClicked"/>
                       </Events>
                     </Component>
                   </SubComponents>
                 </Container>
-                <Component class="swing.MyButton" name="btn_them1">
+                <Component class="swing.MyButton" name="btnThemHang">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ed" green="e0" red="7d" type="rgb"/>
@@ -499,10 +483,10 @@
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_them1ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnThemHangActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="swing.MyButton" name="Btn_capNhat1">
+                <Component class="swing.MyButton" name="btnCapNhatHang">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ed" green="e0" red="7d" type="rgb"/>
@@ -516,10 +500,10 @@
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Btn_capNhat1ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCapNhatHangActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="swing.MyButton" name="btn_LamMoi1">
+                <Component class="swing.MyButton" name="btnLamMoiHang">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ed" green="e0" red="7d" type="rgb"/>
@@ -533,7 +517,7 @@
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_LamMoi1ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLamMoiHangActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
