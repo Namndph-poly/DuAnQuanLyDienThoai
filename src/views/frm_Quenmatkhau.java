@@ -106,6 +106,11 @@ public class frm_Quenmatkhau extends javax.swing.JPanel {
         cmdBackLogin.setBorder(null);
         cmdBackLogin.setContentAreaFilled(false);
         cmdBackLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cmdBackLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdBackLoginActionPerformed(evt);
+            }
+        });
         add(cmdBackLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 410, -1, -1));
 
         jLabel4.setText("Confirm Password");
@@ -241,6 +246,10 @@ public class frm_Quenmatkhau extends javax.swing.JPanel {
     private void btn_sendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_sendActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_sendActionPerformed
+
+    private void cmdBackLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdBackLoginActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmdBackLoginActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
