@@ -15,11 +15,10 @@ import models.Chucvu;
  * @author hungh
  */
 public class Users {
-
-    private String id;
+private String id;
     private String ma;
     private String hoTen;
-    private Date ngaySinh;
+    private String ngaySinh;
     private String diaChi;
     private Integer gioitinh;
     private String sdt;
@@ -32,7 +31,7 @@ public class Users {
     public Users() {
     }
 
-    public Users(String id, String ma, String hoTen, Date ngaySinh, String diaChi, Integer gioitinh, String sdt, String email, String tk, String mk, Chucvu ChucVu, Integer TT) {
+    public Users(String id, String ma, String hoTen, String ngaySinh, String diaChi, Integer gioitinh, String sdt, String email, String tk, String mk, Chucvu ChucVu, Integer TT) {
         this.id = id;
         this.ma = ma;
         this.hoTen = hoTen;
@@ -45,6 +44,23 @@ public class Users {
         this.mk = mk;
         this.ChucVu = ChucVu;
         this.TT = TT;
+    }
+        public Users( String ma, String hoTen, String ngaySinh, String diaChi, Integer gioitinh, String sdt, String email, String tk, String mk, Chucvu ChucVu, Integer TT) {
+        this.ma = ma;
+        this.hoTen = hoTen;
+        this.ngaySinh = ngaySinh;
+        this.diaChi = diaChi;
+        this.gioitinh = gioitinh;
+        this.sdt = sdt;
+        this.email = email;
+        this.tk = tk;
+        this.mk = mk;
+        this.ChucVu = ChucVu;
+        this.TT = TT;
+    }
+
+      public Users(String mk) {
+        this.mk = mk;
     }
 
     public String getId() {
@@ -71,11 +87,11 @@ public class Users {
         this.hoTen = hoTen;
     }
 
-    public Date getNgaySinh() {
+    public String getNgaySinh() {
         return ngaySinh;
     }
 
-    public void setNgaySinh(Date ngaySinh) {
+    public void setNgaySinh(String ngaySinh) {
         this.ngaySinh = ngaySinh;
     }
 
@@ -142,7 +158,4 @@ public class Users {
     public void setTT(Integer TT) {
         this.TT = TT;
     }
-
-   
-
 }

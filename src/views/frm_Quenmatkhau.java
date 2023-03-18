@@ -11,6 +11,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import models.Users;
+import services.IUsersService;
+import services.imp.UsersService;
 
 import viewmodels.UsersViewmodel;
 
@@ -22,12 +24,13 @@ public class frm_Quenmatkhau extends javax.swing.JPanel {
 
     boolean hish = false;
     boolean hish1 = false;
-  
+  IUsersService ius;
     ArrayList lstma;
     int ran;
 
     public frm_Quenmatkhau() {
         initComponents();
+          ius = new UsersService();
         lstma = new ArrayList();
     }
 
@@ -234,12 +237,62 @@ public class frm_Quenmatkhau extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Mật khẩu mới và mật khẩu xác nhận chưa giống nhau!");
             return;
         }
+        if (ius.getUserbytk(txt_email.getText()) == null) {
+            JOptionPane.showMessageDialog(this, "Tài khoản không tồn tại!");
+            return;
+        }
+        if (code == ran) {
+            UsersViewmodel us = new UsersViewmodel();
+            us.setMk(txtPass.getText());
+            ius.updateMK(us, txt_email.getText());
+            JOptionPane.showMessageDialog(this, "Thay đổi mật khẩu thành công");
+            return;
+        }
+        JOptionPane.showMessageDialog(this, "Sai mã bảo mật");
         
 
     }//GEN-LAST:event_btn_doimkMouseClicked
 
     private void btn_sendMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_sendMouseClicked
+String taikhoan = txt_email.getText().trim();
 
+        //regex email
+//        String email = txt_email.getText().trim();
+//        String regex = "^[A-Za-z0-9+_.-]+@(.+)$";
+//        Pattern pattern = Pattern.compile(regex);
+//        Matcher matcher = pattern.matcher(email);
+//        if (email.equals("")) {
+//            JOptionPane.showMessageDialog(this, "Bạn phải nhập e-mail");
+//            return;
+//        } else if (matcher.matches() == false) {
+//            JOptionPane.showMessageDialog(this, "Bạn phải nhập e-mail");
+//            return;
+//        }
+        Users user = ius.getUserbytk(taikhoan);
+        if (user.getTk() == null) {
+            JOptionPane.showMessageDialog(this, "không có tài khoản này ( " + taikhoan + " ) vui lòng nhập tài khoản khác!");
+            return;
+        }
+        Random random = new Random();
+        ran = random.nextInt(99999);
+        String sub = "Verification code";
+        String messsage = "<!DOCTYPE html>\n"
+                + "<html lang=\"en\">\n"
+                + "<head>\n"
+                + "    <meta charset=\"UTF-8\">\n"
+                + "    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n"
+                + "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n"
+                + "    <title></title>\n"
+                + "</head>\n"
+                + "<body>\n"
+                + "    <h3 style=\"color: blue;\">Verification code</h3>\n"
+                + "    <div>Your verification code is : " + ran + "</div>\n"
+                + "    <h3 style=\"color: blue;\">Don't share verification code to prevent unwanted access to your acount </h3>\n"
+                + "</body>\n"
+                + "</html>";
+        utilconnext.SendMail.send(user.getEmail(), sub, messsage);
+        JOptionPane.showMessageDialog(this, " Mã đã gửi vào gmail : " + user.getEmail());
+        txt_email.setEnabled(false);
 
     }//GEN-LAST:event_btn_sendMouseClicked
 
