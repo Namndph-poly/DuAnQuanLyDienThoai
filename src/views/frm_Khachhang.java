@@ -6,6 +6,7 @@ package views;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -13,23 +14,80 @@ import java.util.logging.Logger;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
-
-
+import models.KhachHang;
+import services.KhachHangService;
+import services.imp.KhachHangImp;
 
 /**
  *
  * @author hungh
  */
 public class frm_Khachhang extends javax.swing.JPanel {
-
+    
+    private KhachHangService khSe = new KhachHangImp();
+    private List<KhachHang> list = khSe.getList();
+    private DefaultTableModel tblModel = new DefaultTableModel();
+    
     public frm_Khachhang() {
         initComponents();
-       
-
+        tblModel = (DefaultTableModel) tblKhachHang.getModel();
+        
+        
+            this.loadTable(list);
+        
+        
     }
-
-   
+    
+    private void loadTable(List<KhachHang> listShow) {
+        this.tblModel.setRowCount(0);
+        for (KhachHang kh : list) {
+            Object[] toDataRow = new Object[]{kh.getMa(), kh.getHoTen(), kh.getSdt(), kh.isGioiTinh() == true ? "nam" : "nu"};
+            tblModel.addRow(toDataRow);
+        }
+    }
+    
+    private void lamMoi() {
+        txtHoten.setText("");
+        txtMa.setText("");
+        txtSdt.setText("");
+        rd_Nam.setSelected(true);
+        list=this.khSe.getList();
+        this.loadTable(list);
+    }
+    
+    private KhachHang docForm() {
+        String ma = txtMa.getText();
+        String ten = txtHoten.getText();
+        String sdt = txtSdt.getText();
+        boolean gt = rd_Nam.isSelected() ? true : false;
+        KhachHang kh = new KhachHang(ma, ten, sdt, gt);
+        return kh;
+    }
+    
+    private void fillTable(int i) {
+        KhachHang kh = this.list.get(i);
+        txtHoten.setText(kh.getHoTen());
+        txtMa.setText(kh.getMa());
+        txtSdt.setText(kh.getSdt());
+        if (kh.isGioiTinh() == true) {
+            rd_Nam.setSelected(true);
+        } else {
+            rd_Nu.setSelected(true);
+        }
+    }
+    
+    private boolean checkForm() {
+        
+        if (txtHoten.getText().isEmpty()
+                || txtMa.getText().isEmpty()
+                || txtSdt.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Khong duoc de trong");
+            return false;
+        }
+        
+        return true;
+        
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -50,24 +108,24 @@ public class frm_Khachhang extends javax.swing.JPanel {
         panelGradiente1 = new swing.PanelGradiente();
         panelBorder1 = new swing.PanelBorder();
         jLabel1 = new javax.swing.JLabel();
-        txt_Ten = new swing.MyTextField();
+        txtMa = new swing.MyTextField();
         jLabel5 = new javax.swing.JLabel();
-        txt_tenDem = new swing.MyTextField();
+        txtHoten = new swing.MyTextField();
         jLabel6 = new javax.swing.JLabel();
-        txt_Ho = new swing.MyTextField();
+        txtSdt = new swing.MyTextField();
         jLabel8 = new javax.swing.JLabel();
-        rd_nu = new javax.swing.JRadioButton();
+        rd_Nu = new javax.swing.JRadioButton();
         rd_Nam = new javax.swing.JRadioButton();
-        btn_them = new swing.MyButton();
-        Btn_capNhat = new swing.MyButton();
+        btnThem = new swing.MyButton();
+        btnSua = new swing.MyButton();
         btn_LamMoi = new swing.MyButton();
         jTabbedPane3 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        TB_bang1 = new javax.swing.JTable();
+        tblKhachHang = new javax.swing.JTable();
         panelBorder3 = new swing.PanelBorder();
-        Btn_timKiem1 = new javax.swing.JLabel();
-        txt_timKiem01 = new swing.SearchText();
+        btnTimKiem = new javax.swing.JLabel();
+        txtTimKiem = new swing.SearchText();
         TXT_01 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -122,33 +180,33 @@ public class frm_Khachhang extends javax.swing.JPanel {
         jLabel1.setText("Mã");
         panelBorder1.add(jLabel1);
         jLabel1.setBounds(90, 10, 210, 20);
-        panelBorder1.add(txt_Ten);
-        txt_Ten.setBounds(90, 30, 210, 30);
+        panelBorder1.add(txtMa);
+        txtMa.setBounds(90, 30, 210, 30);
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel5.setText("Họ và Tên");
         panelBorder1.add(jLabel5);
         jLabel5.setBounds(90, 70, 210, 20);
-        panelBorder1.add(txt_tenDem);
-        txt_tenDem.setBounds(90, 90, 210, 30);
+        panelBorder1.add(txtHoten);
+        txtHoten.setBounds(90, 90, 210, 30);
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel6.setText("Số Điện Thoại");
         panelBorder1.add(jLabel6);
         jLabel6.setBounds(340, 10, 210, 20);
-        panelBorder1.add(txt_Ho);
-        txt_Ho.setBounds(340, 30, 210, 30);
+        panelBorder1.add(txtSdt);
+        txtSdt.setBounds(340, 30, 210, 30);
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel8.setText("Giới tính");
         panelBorder1.add(jLabel8);
         jLabel8.setBounds(90, 130, 48, 30);
 
-        rd_nu.setBackground(new java.awt.Color(204, 204, 255));
-        buttonGroup1.add(rd_nu);
-        rd_nu.setText("Nữ");
-        panelBorder1.add(rd_nu);
-        rd_nu.setBounds(150, 160, 60, 30);
+        rd_Nu.setBackground(new java.awt.Color(204, 204, 255));
+        buttonGroup1.add(rd_Nu);
+        rd_Nu.setText("Nữ");
+        panelBorder1.add(rd_Nu);
+        rd_Nu.setBounds(150, 160, 60, 30);
 
         rd_Nam.setBackground(new java.awt.Color(204, 204, 255));
         buttonGroup1.add(rd_Nam);
@@ -159,29 +217,29 @@ public class frm_Khachhang extends javax.swing.JPanel {
         panelBorder1.add(rd_Nam);
         rd_Nam.setBounds(90, 160, 60, 30);
 
-        btn_them.setBackground(new java.awt.Color(125, 224, 237));
-        btn_them.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png"))); // NOI18N
-        btn_them.setText("Thêm");
-        btn_them.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btn_them.addActionListener(new java.awt.event.ActionListener() {
+        btnThem.setBackground(new java.awt.Color(125, 224, 237));
+        btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png"))); // NOI18N
+        btnThem.setText("Thêm");
+        btnThem.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnThem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_themActionPerformed(evt);
+                btnThemActionPerformed(evt);
             }
         });
-        panelBorder1.add(btn_them);
-        btn_them.setBounds(670, 30, 120, 40);
+        panelBorder1.add(btnThem);
+        btnThem.setBounds(670, 30, 120, 40);
 
-        Btn_capNhat.setBackground(new java.awt.Color(125, 224, 237));
-        Btn_capNhat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/floppy-disk.png"))); // NOI18N
-        Btn_capNhat.setText("Cập nhật");
-        Btn_capNhat.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        Btn_capNhat.addActionListener(new java.awt.event.ActionListener() {
+        btnSua.setBackground(new java.awt.Color(125, 224, 237));
+        btnSua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/floppy-disk.png"))); // NOI18N
+        btnSua.setText("Cập nhật");
+        btnSua.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnSua.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Btn_capNhatActionPerformed(evt);
+                btnSuaActionPerformed(evt);
             }
         });
-        panelBorder1.add(Btn_capNhat);
-        Btn_capNhat.setBounds(670, 90, 120, 40);
+        panelBorder1.add(btnSua);
+        btnSua.setBounds(670, 90, 120, 40);
 
         btn_LamMoi.setBackground(new java.awt.Color(125, 224, 237));
         btn_LamMoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/refresh.png"))); // NOI18N
@@ -202,44 +260,49 @@ public class frm_Khachhang extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
 
-        TB_bang1.setModel(new javax.swing.table.DefaultTableModel(
+        tblKhachHang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+
             },
             new String [] {
-                "ID", "Họ Và Tên", "Giới Tính", "Ngày Sinh", "SĐT", "Email", "Điểm Thưởng"
+                "Ma", "Ho ten", "SĐT", "Gioi tinh"
             }
-        ));
-        TB_bang1.setGridColor(new java.awt.Color(255, 255, 255));
-        TB_bang1.setRowHeight(25);
-        TB_bang1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                TB_bang1MouseClicked(evt);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
-        jScrollPane3.setViewportView(TB_bang1);
+        tblKhachHang.setGridColor(new java.awt.Color(255, 255, 255));
+        tblKhachHang.setRowHeight(25);
+        tblKhachHang.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblKhachHangMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(tblKhachHang);
 
         panelBorder3.setBackground(new java.awt.Color(255, 255, 255));
 
-        Btn_timKiem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/search_24px.png"))); // NOI18N
-        Btn_timKiem1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnTimKiem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/search_24px.png"))); // NOI18N
+        btnTimKiem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                Btn_timKiem1MouseClicked(evt);
+                btnTimKiemMouseClicked(evt);
             }
         });
-        panelBorder3.add(Btn_timKiem1);
-        Btn_timKiem1.setBounds(480, 0, 40, 40);
+        panelBorder3.add(btnTimKiem);
+        btnTimKiem.setBounds(480, 0, 40, 40);
 
-        txt_timKiem01.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtTimKiem.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txt_timKiem01KeyReleased(evt);
+                txtTimKiemKeyReleased(evt);
             }
         });
-        panelBorder3.add(txt_timKiem01);
-        txt_timKiem01.setBounds(20, 0, 450, 40);
+        panelBorder3.add(txtTimKiem);
+        txtTimKiem.setBounds(20, 0, 450, 40);
 
         TXT_01.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         TXT_01.setForeground(new java.awt.Color(255, 51, 0));
@@ -346,52 +409,82 @@ public class frm_Khachhang extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
-       
+    private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
+        if (this.checkForm()) {
+            int xacNhan = JOptionPane.showConfirmDialog(this, "Ban co chac chan muon them khong?");
+            if (xacNhan != JOptionPane.YES_OPTION) {
+                return;
+            }
+            KhachHang kh = this.docForm();
+            JOptionPane.showMessageDialog(this, this.khSe.insert(kh));
+            this.list = khSe.getList();
+            this.lamMoi();
+            this.loadTable(list);
+        }
+        
 
-    }//GEN-LAST:event_btn_themActionPerformed
+    }//GEN-LAST:event_btnThemActionPerformed
 
     private void btn_LamMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_LamMoiActionPerformed
-
+        this.lamMoi();
 
     }//GEN-LAST:event_btn_LamMoiActionPerformed
 
-    private void Btn_capNhatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_capNhatActionPerformed
-        
-    }//GEN-LAST:event_Btn_capNhatActionPerformed
+    private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
+        if (this.checkForm()) {
+            int row = tblKhachHang.getSelectedRow();
+            if (row == -1) {
+                JOptionPane.showMessageDialog(this, "Ban chua chon dong nao");
+                return;
+            }
+            int xacNhan = JOptionPane.showConfirmDialog(this, "Ban co chac chan muon sua khong?");
+            if (xacNhan != JOptionPane.YES_OPTION) {
+                return;
+            }
+            KhachHang kh = this.docForm();
+            JOptionPane.showMessageDialog(this, this.khSe.update(kh, txtMa.getText()));
+            this.list = khSe.getList();
+            this.lamMoi();
+            this.loadTable(list);
+        }
+
+    }//GEN-LAST:event_btnSuaActionPerformed
 
     private void TB_bangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TB_bangMouseClicked
 
     }//GEN-LAST:event_TB_bangMouseClicked
 
-    private void TB_bang1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TB_bang1MouseClicked
+    private void tblKhachHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblKhachHangMouseClicked
+        int i = this.tblKhachHang.getSelectedRow();
+        this.fillTable(i);
+    }//GEN-LAST:event_tblKhachHangMouseClicked
 
-    }//GEN-LAST:event_TB_bang1MouseClicked
+    private void btnTimKiemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTimKiemMouseClicked
+        
+        this.list = this.khSe.search(txtTimKiem.getText());
+        this.loadTable(list);
+        
+    }//GEN-LAST:event_btnTimKiemMouseClicked
 
-    private void Btn_timKiem1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_timKiem1MouseClicked
+    private void txtTimKiemKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTimKiemKeyReleased
 
-    }//GEN-LAST:event_Btn_timKiem1MouseClicked
-
-    private void txt_timKiem01KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_timKiem01KeyReleased
-      
-    }//GEN-LAST:event_txt_timKiem01KeyReleased
+    }//GEN-LAST:event_txtTimKiemKeyReleased
 
     private void btn_LamMoi1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_LamMoi1ActionPerformed
-       
+
     }//GEN-LAST:event_btn_LamMoi1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private swing.MyButton Btn_capNhat;
-    private javax.swing.JLabel Btn_timKiem1;
     private javax.swing.JLabel LBL_SOLUONG;
     private javax.swing.JTable TB_bang;
     private javax.swing.JTable TB_bang02;
-    private javax.swing.JTable TB_bang1;
     private javax.swing.JLabel TXT_01;
+    private swing.MyButton btnSua;
+    private swing.MyButton btnThem;
+    private javax.swing.JLabel btnTimKiem;
     private swing.MyButton btn_LamMoi;
     private swing.MyButton btn_LamMoi1;
-    private swing.MyButton btn_them;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
@@ -409,12 +502,13 @@ public class frm_Khachhang extends javax.swing.JPanel {
     private swing.PanelBorder panelBorder3;
     private swing.PanelGradiente panelGradiente1;
     private javax.swing.JRadioButton rd_Nam;
-    private javax.swing.JRadioButton rd_nu;
-    private swing.MyTextField txt_Ho;
-    private swing.MyTextField txt_Ten;
-    private swing.MyTextField txt_tenDem;
+    private javax.swing.JRadioButton rd_Nu;
+    private javax.swing.JTable tblKhachHang;
+    private swing.MyTextField txtHoten;
+    private swing.MyTextField txtMa;
+    private swing.MyTextField txtSdt;
+    private swing.SearchText txtTimKiem;
     private swing.SearchText txt_timKiem;
-    private swing.SearchText txt_timKiem01;
     private swing.SearchText txt_timKiem1;
     // End of variables declaration//GEN-END:variables
 }
