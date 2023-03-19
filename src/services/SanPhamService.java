@@ -6,17 +6,15 @@ package services;
 
 import java.util.List;
 import viewmodels.HangViewModel;
+import viewmodels.SanPhamViewModel;
 
 /**
  *
  * @author HieuIT
  */
-public interface HangService {
+public interface SanPhamService {
 
-    List<HangViewModel> getAll();
-
-    String add(HangViewModel h);
-
-    String sua(String maHang, HangViewModel h);
-
+    List<SanPhamViewModel> getAll();
+    
+    List<HangViewModel> getID();
 }
