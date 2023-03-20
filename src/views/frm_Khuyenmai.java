@@ -13,6 +13,9 @@ import java.util.List;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import services.IKhuyenmaiService;
+import services.imp.KhuyenmaiService;
+import viewmodels.KhuyenmaiViewmodel;
 
 
 
@@ -21,13 +24,35 @@ import javax.swing.table.DefaultTableModel;
  * @author hungh
  */
 public class frm_Khuyenmai extends javax.swing.JPanel {
-
+  DefaultTableModel defaultTableModel;
+    DefaultTableModel defaultTableModel1;
+    private IKhuyenmaiService khuyenmaiService;
    
     public frm_Khuyenmai() {
         initComponents();
+        defaultTableModel = (DefaultTableModel) tb_khuyenmai.getModel();
+        defaultTableModel1 = (DefaultTableModel) tb_sp.getModel();
+        khuyenmaiService = new KhuyenmaiService();
+        khuyenmaiService.UpdateTT();
+        khuyenmaiService.UpdateTT2();
+        LoadData();
         
     }
-
+        void LoadData() {
+        defaultTableModel.setRowCount(0);
+        int stt = 1;
+        for (KhuyenmaiViewmodel x : khuyenmaiService.GetALL()) {
+            defaultTableModel.addRow(new Object[]{
+                stt,
+                x.getTenKM(),
+                x.getNgayBatDau(),
+                x.getNgayKetThuc(),
+                String.format("%.0f", x.getGiaTriGiam()) + " " + x.getHinhThucKM(),
+                x.getTrangthai() == 0 ? "Còn hạn" : "Hết hạn"
+            });
+            stt++;
+        }
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
