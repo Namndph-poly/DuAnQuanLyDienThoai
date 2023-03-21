@@ -24,7 +24,7 @@ public class HoaDonViewModel {
 
     public HoaDonViewModel() {
     }
-
+// jhakshkadsld
     public HoaDonViewModel(int id, int idKH, int idNV, int idHTTT, String maHD, String ngayTao, String ngayThanhToan, long tongTien, long tienKhachCanTra, int trangThai, String moTa) {
         this.id = id;
         this.idKH = idKH;
