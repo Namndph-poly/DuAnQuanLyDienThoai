@@ -13,7 +13,7 @@ public class frm_Hoadon extends javax.swing.JPanel {
 
     public frm_Hoadon() {
         initComponents();
-
+//hdusac
     }
 
    
